@@ -33,7 +33,10 @@ public class SearchByName implements Runnable {
 			KeyParser parser = new KeyParser("{\""+ name + "\":\"Z\"}");
 			KeyFilter filter = parser.parseKeyFilter();
 			exchange.append(Key.BEFORE);
+			long time1 = System.nanoTime();
 			exchange.next(filter);
+			long time2 = System.nanoTime();
+			log.info( "Nanoseconds to find matching record: " + (time2 - time1) );
 			
 			for( int i = 0; i < num; i++ ) {
 				log.info( "Fetched Key: " + exchange.getKey().toString() );

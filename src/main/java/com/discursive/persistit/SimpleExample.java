@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
@@ -54,9 +55,8 @@ public class SimpleExample {
 		// Configure Spring Framework
 		log.info("Configuring Spring Framework...");
 		GenericApplicationContext ctx = new GenericApplicationContext();
-		XmlBeanDefinitionReader xmlReader = new XmlBeanDefinitionReader(ctx);
-		xmlReader.loadBeanDefinitions(new ClassPathResource(
-				"applicationContext.xml"));
+		ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner( ctx );
+		scanner.scan( "com.discursive.persistit" );
 		ctx.refresh();
 		context = ctx;
 	}

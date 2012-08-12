@@ -27,19 +27,22 @@ public class SearchById implements Runnable {
 
 		try {
 			Exchange exchange = persistItManager.getPersonExchange();
-			
+
 			String id = "/m/0484q";
 			KeyParser parser = new KeyParser("{*,\"" + id + "\"}");
 			KeyFilter filter = parser.parseKeyFilter();
-			
-			
+
 			exchange.append(Key.BEFORE);
+			long time1 = System.nanoTime();
 			exchange.next(filter);
-				log.info( "Fetched Key: " + exchange.getKey().toString() );
-				log.info( "Fetched Value: " + exchange.getValue().toString() );
+			long time2 = System.nanoTime();
+			log.info("Nanoseconds to find matching record: " + (time2 - time1));
+
+			log.info("Fetched Key: " + exchange.getKey().toString());
+			log.info("Fetched Value: " + exchange.getValue().toString());
 
 		} catch (Exception e) {
-			log.error( "There was an error searching for a record", e );
+			log.error("There was an error searching for a record", e);
 
 		}
 
