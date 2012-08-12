@@ -12,3 +12,5 @@ freebase-person.tsv
 .classpath
 .project
 .settings
+
+target/
