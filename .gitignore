@@ -8,3 +8,7 @@
 data/
 log/
 freebase-person.tsv
+
+.classpath
+.project
+.settings
